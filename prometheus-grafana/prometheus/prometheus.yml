@@ -21,7 +21,6 @@ scrape_configs:
 
 # Flask app metrics
 - job_name: flask
-  metrics_path: /metrics
   static_configs:
     - targets: ['backend:8000']
 
