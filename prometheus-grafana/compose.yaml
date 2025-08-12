@@ -27,8 +27,10 @@ services:
       - ./grafana:/etc/grafana/provisioning/datasources
   mysqld-exporter:
     image: prom/mysqld-exporter:v0.15.1
-    environment:
-      - DATA_SOURCE_NAME=exporter:exporterpass@tcp(db:3306)/
+    command:
+      - --mysqld.address=db:3306
+      - --mysqld.username=exporter
+      - --mysqld.password=exporterpass
     networks:
       - backnet
     restart: unless-stopped
