@@ -32,8 +32,8 @@ services:
     secrets:
       - db-password
     volumes:
-      - ./db/create-export-user.sh:/create-export-user.sh
-    entrypoint: ["/bin/sh", "-c", "/create-export-user.sh"]
+      - ./db/create-export-user.sh:/tmp/create-export-user.sh
+    entrypoint: ["/bin/sh", "-c", "sh /tmp/create-export-user.sh"]
     restart: "no"
 
   backend:
