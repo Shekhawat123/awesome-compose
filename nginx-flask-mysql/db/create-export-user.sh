@@ -11,7 +11,8 @@ until docker inspect --format='{{json .State.Health.Status}}' nginx-flask-mysql-
 done
 
 echo "DB is healthy. Creating exporter user..."
-docker exec nginx-flask-mysql-db-1 mysql -uroot -p"$MYSQL_ROOT_PASSWORD" -e "
+mysql -h db -u root -p"$(cat /run/secrets/db-password)" -e "
 CREATE USER IF NOT EXISTS 'exporter'@'%' IDENTIFIED BY 'exporterpass';
 GRANT PROCESS, REPLICATION CLIENT ON *.* TO 'exporter'@'%';
 FLUSH PRIVILEGES;"
+
