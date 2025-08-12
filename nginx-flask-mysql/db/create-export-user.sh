@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/bin/sh
 set -e
 
 # Read the password from the secret file
-MYSQL_ROOT_PASSWORD="$(cat /run/secrets/db-password)"
+export MYSQL_ROOT_PASSWORD="$(cat /run/secrets/db-password)"
 
 # Wait until DB is healthy
 echo "Waiting for DB to become healthy..."
@@ -16,3 +16,5 @@ CREATE USER IF NOT EXISTS 'exporter'@'%' IDENTIFIED BY 'exporterpass';
 GRANT PROCESS, REPLICATION CLIENT ON *.* TO 'exporter'@'%';
 FLUSH PRIVILEGES;"
 
+unset MYSQL_ROOT_PASSWORD
+echo "✅ Exporter user created successfully."
