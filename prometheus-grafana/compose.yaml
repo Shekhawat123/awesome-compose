@@ -44,5 +44,8 @@ volumes:
 networks:
   backnet:
     external: true
+    name: nginx-flask-mysql_backnet
   frontnet:
     external: true
+    name: nginx-flask-mysql_frontnet
+
