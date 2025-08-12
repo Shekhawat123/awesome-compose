@@ -4,7 +4,7 @@ services:
     image: mariadb:10-focal
     # If you really want to use MySQL, uncomment the following line
     #image: mysql:8
-    command: mysqld --default-authentication-plugin=mysql_native_password
+    command: '--default-authentication-plugin=mysql_native_password'
     restart: always
     healthcheck:
       test: ['CMD-SHELL', 'mysqladmin ping -h 127.0.0.1 --password="$$(cat /run/secrets/db-password)" --silent']
@@ -15,7 +15,6 @@ services:
       - db-password
     volumes:
       - db-data:/var/lib/mysql
-      - ./db/init.sh:/init.sh:ro
     networks:
       - backnet
     environment:
@@ -24,7 +23,6 @@ services:
     expose:
       - 3306
       - 33060
-    entrypoint: /init.sh
 
   backend:
     build:
