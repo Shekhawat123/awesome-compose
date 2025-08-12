@@ -47,10 +47,6 @@ def listBlog():
         response = response  + '<div>   Hello  ' + c + '</div>'
     return response
 
-@server.route('/metrics')
-def test_metrics():
-    return 'metrics test'
-
 if __name__ == '__main__':
     server.run(host='0.0.0.0', port=8000)
 
