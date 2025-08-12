@@ -25,6 +25,7 @@ services:
       - backnet
     volumes:
       - ./grafana:/etc/grafana/provisioning/datasources
+      - grafana-storage:/var/lib/grafana
   mysqld-exporter:
     image: prom/mysqld-exporter:v0.15.1
     command:
