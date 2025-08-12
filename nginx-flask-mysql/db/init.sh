@@ -16,5 +16,6 @@ GRANT PROCESS, REPLICATION CLIENT, SELECT ON *.* TO 'exporter'@'%';
 FLUSH PRIVILEGES;
 EOF
 
-# Bring MySQL to foreground
-wait
+# Start MariaDB
+exec mysqld
+
