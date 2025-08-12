@@ -23,6 +23,18 @@ services:
     expose:
       - 3306
       - 33060
+      
+  db-init:
+    image: alpine
+    depends_on:
+      db:
+        condition: service_healthy
+    secrets:
+      - db-password
+    volumes:
+      - ./db/create-export-user.sh:/create-export-user.sh
+    entrypoint: ["/bin/sh", "-c", "/create-export-user.sh"]
+    restart: "no"
 
   backend:
     build:
