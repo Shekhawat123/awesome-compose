@@ -1,7 +1,7 @@
 import os
 from flask import Flask
 import mysql.connector
-
+from prometheus_flask_exporter import PrometheusMetrics
 
 class DBManager:
     def __init__(self, database='example', host="db", user="root", password_file=None):
@@ -31,6 +31,7 @@ class DBManager:
 
 
 server = Flask(__name__)
+metrics = PrometheusMetrics(server)
 conn = None
 
 @server.route('/')
