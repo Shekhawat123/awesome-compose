@@ -10,7 +10,7 @@ until mysqladmin ping --silent; do
 done
 
 # Create exporter user if not exists
-mysql -u root -p"$(cat /db/password.txt)" <<EOF
+mysql -u root -p"$(cat /run/secrets/db-password)" <<EOF
 CREATE USER IF NOT EXISTS 'exporter'@'%' IDENTIFIED BY 'exporterpass';
 GRANT PROCESS, REPLICATION CLIENT, SELECT ON *.* TO 'exporter'@'%';
 FLUSH PRIVILEGES;
