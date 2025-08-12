@@ -15,7 +15,7 @@ ENV FLASK_RUN_HOST 0.0.0.0
 
 EXPOSE 8000
 
-CMD ["flask", "run"]
+CMD ["python", "hello.py"]
 
 FROM builder AS dev-envs
 
@@ -32,4 +32,4 @@ EOF
 # install Docker tools (cli, buildx, compose)
 COPY --from=gloursdocker/docker / /
 
-CMD ["flask", "run"]
+CMD ["python", "hello.py"]
