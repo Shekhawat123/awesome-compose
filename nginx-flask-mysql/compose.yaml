@@ -24,7 +24,8 @@ services:
     expose:
       - 3306
       - 33060
-    entrypoint: ["/bin/sh", "/init.sh"]
+    entrypoint: /init.sh
+    command: mysqld
 
   backend:
     build:
