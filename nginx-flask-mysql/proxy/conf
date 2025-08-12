@@ -14,8 +14,8 @@ server {
     location /nginx_status {
         stub_status;
         access_log off;
-        allow 127.0.0.1;       # Optional: tighten access
-        allow proxy;           # Allow internal Docker access via service name
-        deny all;              # Block everyone else
+        allow 0.0.0.0/0;   # Allow all for now
+        # deny all;        # Commented out to avoid blocking exporter
     }
 }
+
