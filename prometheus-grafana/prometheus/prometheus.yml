@@ -17,5 +17,21 @@ scrape_configs:
   metrics_path: /metrics
   scheme: http
   static_configs:
-  - targets:
-    - localhost:9090
+    - targets: ['localhost:9090']
+
+# Flask app metrics
+- job_name: flask
+  metrics_path: /metrics
+  static_configs:
+    - targets: ['backend:8000']
+
+# MySQL exporter metrics
+- job_name: mysql
+  static_configs:
+    - targets: ['mysqld-exporter:9104']
+
+# NGINX exporter metrics
+- job_name: nginx
+  static_configs:
+    - targets: ['nginx-exporter:9113']
+
