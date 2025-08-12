@@ -29,7 +29,8 @@ services:
     image: prom/mysqld-exporter:v0.15.1
     command:
       - --config.my-cnf=/etc/mysql/.my.cnf
-      - --collect.slave_status false
+      - --collect.slave_status
+      - "false"
     volumes:
       - ./mysql-exporter/.my.cnf:/etc/mysql/.my.cnf:ro
     networks:
