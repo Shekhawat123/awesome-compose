@@ -15,6 +15,7 @@ services:
       - db-password
     volumes:
       - db-data:/var/lib/mysql
+      - ./db/init.sh:/init.sh:ro
     networks:
       - backnet
     environment:
@@ -23,6 +24,7 @@ services:
     expose:
       - 3306
       - 33060
+    entrypoint: ["/bin/sh", "/init.sh"]
 
   backend:
     build:
