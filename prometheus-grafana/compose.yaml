@@ -44,6 +44,7 @@ services:
     restart: unless-stopped
 volumes:
   prom_data:
+  grafana-storage:
 networks:
   backnet:
     external: true
