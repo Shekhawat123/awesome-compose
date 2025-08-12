@@ -25,6 +25,13 @@ services:
       - backnet
     volumes:
       - ./grafana:/etc/grafana/provisioning/datasources
+  mysqld-exporter:
+    image: prom/mysqld-exporter:v0.15.1
+    environment:
+      - DATA_SOURCE_NAME=exporter:exporterpass@tcp(db:3306)/
+    networks:
+      - backnet
+    restart: unless-stopped
 volumes:
   prom_data:
 networks:
