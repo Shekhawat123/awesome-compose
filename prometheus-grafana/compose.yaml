@@ -27,8 +27,10 @@ services:
       - ./grafana:/etc/grafana/provisioning/datasources
   mysqld-exporter:
     image: prom/mysqld-exporter:v0.15.1
-    environment:
-      DATA_SOURCE_NAME: exporter:exporterpass@tcp(db:3306)/
+    command:
+      - --config.my-cnf=/etc/mysql/.my.cnf
+    volumes:
+      - ./mysql-exporter/.my.cnf:/etc/mysql/.my.cnf:ro
     networks:
       - backnet
     restart: unless-stopped
