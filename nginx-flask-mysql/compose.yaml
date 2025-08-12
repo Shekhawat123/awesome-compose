@@ -33,6 +33,8 @@ services:
       - db-password
     volumes:
       - ./db/create-export-user.sh:/tmp/create-export-user.sh
+    networks:
+      - backnet
     entrypoint: ["/bin/sh", "-c", "apk add --no-cache mysql-client && sh /tmp/create-export-user.sh"]
     restart: "no"
 
