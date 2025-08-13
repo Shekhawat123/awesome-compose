@@ -54,3 +54,5 @@ networks:
     name: nginx-flask-mysql_frontnet
 volumes:
   mysql-logs:
+    external: true
+    name: nginx-flask-mysql_mysql-logs
