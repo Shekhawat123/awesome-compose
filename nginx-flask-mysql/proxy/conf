@@ -1,3 +1,10 @@
+http {
+    log_format syslog_json escape=json '{ "time": "$time_local", "remote_ip": "$remote_addr", "remote_user": "$remote_user", "request": "$request", "response": "$status", "bytes": "$body_bytes_sent", "referrer": "$http_referer", "agent": "$http_user_agent" }';
+
+    access_log syslog:server=logstash:5000,facility=local7,tag=nginx,severity=info syslog_json;
+
+}
+
 server {
     listen       80;
     server_name  localhost;
