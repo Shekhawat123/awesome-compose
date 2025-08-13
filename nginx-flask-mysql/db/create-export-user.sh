@@ -16,3 +16,10 @@ if [ $RESULT -eq 0 ]; then
 else
   echo "❌ Failed to create exporter user. Exit code: $RESULT"
 fi
+
+echo "Checking current user..."
+id
+
+echo "Attempting to fix MySQL log permissions..."
+chmod o+x /var/log/mysql && echo "✅ Directory permission fixed." || echo "❌ Failed to fix directory permission."
+chmod o+r /var/log/mysql/general.log && echo "✅ File permission fixed." || echo "❌ Failed to fix file permission."
