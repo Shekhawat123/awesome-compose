@@ -19,6 +19,7 @@ services:
       - db-password
     volumes:
       - db-data:/var/lib/mysql
+      - mysql-logs:/var/log/mysql
     networks:
       - backnet
     environment:
@@ -70,6 +71,7 @@ services:
 
 volumes:
   db-data:
+  mysql-logs:
 
 secrets:
   db-password:
