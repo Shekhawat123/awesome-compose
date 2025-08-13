@@ -23,7 +23,7 @@ services:
       LS_JAVA_OPTS: "-Xms512m -Xmx512m"
     volumes:
       - ./logstash/pipeline/logstash-nginx.config:/usr/share/logstash/pipeline/logstash-nginx.config
-      - ./logstash/nginx.log:/home/nginx.log
+      - mysql-logs:/var/log/mysql:ro
     ports:
       - "5000:5000/tcp"
       - "5000:5000/udp"
@@ -52,3 +52,5 @@ networks:
   frontnet:
     external: true
     name: nginx-flask-mysql_frontnet
+volumes:
+  mysql-logs:
