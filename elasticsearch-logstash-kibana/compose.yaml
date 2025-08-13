@@ -14,7 +14,7 @@ services:
       timeout: 10s
       retries: 3
     networks:
-      - elastic
+      - backnet
   logstash:
     image: logstash:7.16.1
     container_name: log
@@ -32,7 +32,8 @@ services:
     depends_on:
       - elasticsearch
     networks:
-      - elastic
+      - frontnet
+      - backnet
     command: logstash -f /usr/share/logstash/pipeline/logstash-nginx.config
   kibana:
     image: kibana:7.16.1
@@ -42,7 +43,12 @@ services:
     depends_on:
       - elasticsearch
     networks:
-      - elastic
+      - backnet
+      - frontnet
 networks:
-  elastic:
-    driver: bridge
+  backnet:
+    external: true
+    name: nginx-flask-mysql_backnet
+  frontnet:
+    external: true
+    name: nginx-flask-mysql_frontnet
