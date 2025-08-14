@@ -2,6 +2,13 @@ import os
 from flask import Flask
 import mysql.connector
 from prometheus_flask_exporter import PrometheusMetrics
+import logging
+
+logging.basicConfig(
+    filename='/app/logs/app.log',
+    level=logging.INFO,
+    format='%(asctime)s %(levelname)s %(message)s'
+)
 
 class DBManager:
     def __init__(self, database='example', host="db", user="root", password_file=None):
